@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>0105 - Vue.js</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{title}}</h1>
+      <p>{{ content }}</p>
+      <p>Curso Liberado: {{comprou ? 'Sim' : 'Não'}}</p>
+      <p>Área Quadrado: {{lado * lado}}</p>
+      <p>Perímetro Quadrado: {{lado * 4}}</p>
+
+      <p>Cliente Vitalício: {{comprou}}</p>
+      <div v-if="comprou">
+        <input v-model="color" type="color" />
+        <p v-bind:style="{backgroundColor: color}">Essa é a cor: {{color}}</p>
+        <a :href="comprou ? url : ''">{{url}}</a>
+      </div>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          title: "Curso de Javascript",
+          content: "Esse é o conteúdo",
+          comprou: false,
+          lado: 20,
+          color: "#444",
+          url: "http://spartadev.com.br",
+        },
+      });
+    </script>
+  </body>
+</html>
