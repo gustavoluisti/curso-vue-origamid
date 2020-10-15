@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>0105 - Vue.js</title>
+  </head>
+  <body>
+    <div id="app">
+      O valor total:{{total}}
+      <button @click="incrementar">Incrementar</button>
+      <button @click="diminuir">Diminuir</button>
+
+      <hr />
+      <p>A compra é {{ compra }}</p>
+      <button @click="mudarCompra('Gutarra')">Guitarra</button>
+      <button @click="mudarCompra('Violão')">Violão</button>
+      <hr />
+      <p>A soma total é {{ valor }}</p>
+      <button @click="calculo(10)">Somar</button>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          total: 0,
+          compra: "",
+          valor: 0,
+        },
+        methods: {
+          incrementar() {
+            this.total++;
+          },
+          diminuir() {
+            this.total--;
+          },
+
+          mudarCompra(instrumento) {
+            this.compra = instrumento;
+          },
+          calculo(numero) {
+            this.valor = numero + numero;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>0105 - Vue.js</title>
+    <style>
+      .verde {
+        color: green;
+      }
+      .vermelho {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <a :href="link">Link Google</a>
+      <p v-bind:class="cor">Parágrafo</p>
+      <p :class="comprou ? liberar : naoLiberar">O cliente comprou ?</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          link: "http://www.google.com",
+          cor: "Azul",
+          comprou: true,
+          liberar: "verde",
+          naoLiberar: "vermelho",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>0105 - Vue.js</title>
+  </head>
+  <body>
+    <div id="app">
+      {{ titulo }} - {{cor}}
+      <p>{{objeto.item}}</p>
+      <p>{{frutas[0]}}</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          titulo: "Gustavo",
+          cor: "Vermelho",
+          objeto: {
+            item: "Item 1",
+          },
+          frutas: ["morango", "banana"],
+        },
+      });
+    </script>
+  </body>
+</html>
