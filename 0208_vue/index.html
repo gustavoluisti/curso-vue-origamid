@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>0206 - Vue.js</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(curso, index) in cursos">{{index}} - {{curso}}</li>
+        <li v-for="(framework, index) in frameworks">
+          {{index}} - {{framework}}
+        </li>
+        <li v-for="estado, key in estados">
+          {{key}} - populacao {{estado.populacao}}
+        </li>
+        <li v-for="({populacao, nome}, key) in estados">
+          <p>{{nome}} - {{populacao}}</p>
+        </li>
+        <div v-for="lista in listas">{{lista}}</div>
+        <button @click="removerItem">Remover</button>
+        <button @click="mudarItem">Mudar</button>
+      </ul>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          cursos: ["HTML", "CSS", "Javascript", "Php", "Wordpress"],
+          frameworks: ["React", "Angular", "Vue"],
+          estados: {
+            sp: {
+              populacao: "45 milhões",
+              nome: "São Paulo",
+            },
+            mg: {
+              populacao: "21 milhões",
+              nome: "Minas gerais",
+            },
+            rj: {
+              populacao: "17 milhões",
+              nome: "Rio de Janeiro",
+            },
+          },
+          listas: ["Item 1", "Item 2", "Item 3"],
+        },
+        methods: {
+          removerItem() {
+            this.listas.pop();
+          },
+          mudarItem() {
+            this.$set(this.listas, 1, "Morango");
+            // this.listas[0] = "Banana";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
