@@ -26,6 +26,12 @@ const vm = new Vue({
         .then(json => {
           this.produto = json
         })
+    },
+    fecharModal({target, currentTarget}) {
+      if(target === currentTarget) {
+        this.produto = false;
+
+      }
     }
   },
   created() {
