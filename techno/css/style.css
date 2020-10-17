@@ -2,7 +2,8 @@ body,
 h1,
 h2,
 ul,
-li {
+li,
+p {
   margin: 0;
   padding: 0;
 }
@@ -120,6 +121,30 @@ body {
   font-family: "Noto Serif";
 }
 
+.modal_btn:active {
+  background: #808080;
+}
+
+/* Avaliação*/
+
 .avaliacoes {
   grid-column: 2;
+}
+
+.avaliacao {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 20px;
+}
+
+.avaliacoes_subtitulo {
+  font-size: 1.75rem;
+}
+
+.avaliacao_descricao {
+  color: rgba(0, 0, 0, 0.7);
+  margin: 20px 0 5px 0;
+}
+
+.avaliacao_usuario {
+  font-weight: bold;
 }
