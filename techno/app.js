@@ -2,7 +2,8 @@ const vm = new Vue({
   el: "#app",
   data:{
     produtos: [],
-    produto: false
+    produto: false,
+    carrinho: [],
   },
   filters: {
     numeroPreco(valor){
@@ -11,6 +12,18 @@ const vm = new Vue({
     maiuscula(valor) {
       return valor.toUpperCase()
     }
+   },
+   computed:{
+     carrinhoTotal() {
+      let total = 0;
+      if(this.carrinho.length) {
+        this.carrinho.forEach(item => {
+          total += item.preco
+        })
+      }
+
+      return total;
+     }
    },
   methods:{
     fetchProdutos() {
@@ -39,6 +52,16 @@ const vm = new Vue({
         this.produto = false;
 
       }
+    },
+    adicionarItem() {
+      this.produto.estoque--;
+
+      const { id, nome, preco } = this.produto;
+
+      this.carrinho.push({ id, nome, preco });
+    },
+    removerItem(index) {
+      this.carrinho.splice(index, 1);
     }
   },
   created() {
