@@ -4,8 +4,9 @@ const vm = new Vue({
     produtos: [],
     produto: false,
     carrinho: [],
+    carrinhoAtivo: false,
     mensagemAlerta: "Item adicionado",
-    alertaAtivo: false
+    alertaAtivo: false,
   },
   filters: {
     numeroPreco(valor){
@@ -52,6 +53,12 @@ const vm = new Vue({
     fecharModal({target, currentTarget}) {
       if(target === currentTarget) {
         this.produto = false;
+
+      }
+    },
+    cliqueForaCarrinho({target, currentTarget}) {
+      if(target === currentTarget) {
+        this.carrinhoAtivo = false;
 
       }
     },
