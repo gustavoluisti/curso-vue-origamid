@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>0206 - Vue.js</title>
+  </head>
+  <body>
+    <div id="app">
+      <div v-for="endereco, key in enderecos">
+        <span>{{key}}:</span> {{endereco}}
+      </div>
+      <button @click="puxarCep">Puxar endereco</button>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          enderecos: {},
+        },
+        methods: {
+          puxarCep() {
+            fetch("https://viacep.com.br/ws/04538133/json/")
+              .then((response) => response.json())
+              .then((json) => {
+                this.enderecos = json;
+                console.log(this.enderecos);
+              });
+          },
+        },
+      });
+    </script>
+
+    <!--
+  Utilizando a api:
+  https://viacep.com.br/ws/04538133/json/
+  Mostre o cep, logradouro, complemento, bairro, localidade e uf do que for retornado.
+
+  
+  Use o arquivo json da aula, para listar os cursos e as matérias.
+-->
+  </body>
+</html>
