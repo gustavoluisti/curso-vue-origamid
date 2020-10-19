@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>0502</title>
+  </head>
+  <body>
+    <div id="app">
+      {{lista}}
+      <lista-produtos
+        :frutas="lista"
+        title="Aprendendo Vue"
+        legal="Vue é muito legal"
+        :musica="instrumentos"
+      />
+    </div>
+
+    <script type="module">
+      const ItemProduto = {
+        name: "ItemProduto",
+        props: ["nomeFruta"],
+        template: `
+          <li>
+            <h2>{{nomeFruta}}</h2>
+            Esse é o nome: {{nomeFruta}}
+          </li>
+        `,
+      };
+
+      const ListaProdutos = {
+        name: "ListaProdutos",
+        props: ["frutas", "title", "legal", "musica"],
+        components: {
+          ItemProduto,
+        },
+        template: `
+          <ul>
+            <h2>{{title}}</h2>
+            <p>{{legal}} </p>
+            <li>{{frutas}}</li>
+            <item-produto 
+              v-for="fruta, index in frutas" 
+              :key="fruta + index" 
+              :nomeFruta="fruta"
+              ></item-produto>
+            <p v-for="item in musica"> meu instrumento é {{item}}</p>
+          </ul>
+        `,
+      };
+
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          lista: ["Banana", "Morando", "Manga"],
+          instrumentos: ["Guitarra", "Baixo", "Bateria", "Microfone"],
+        },
+        components: {
+          ListaProdutos,
+        },
+      });
+    </script>
+  </body>
+</html>

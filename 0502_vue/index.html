@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>0502</title>
+  </head>
+  <body>
+    <div id="app">
+      <formulario-acoes></formulario-acoes>
+    </div>
+
+    <script type="module">
+      const DadosAcao = {
+        name: "DadosAcao",
+        props: ["acao"],
+        template: `
+          <ul>
+            <li v-for="item, key in acao">{{key}}: {{item}} </li> 
+          </ul>
+        `,
+      };
+
+      const FormularioAcoes = {
+        name: "FormularioAcoes",
+        data() {
+          return {
+            simbolo: "",
+            dados: {},
+          };
+        },
+        components: {
+          DadosAcao,
+        },
+        template: `
+          <div>
+            <input type="text" v-model="simbolo" />
+            <button @click="puxarAcao">Puxar Ações</button> 
+            <hr>
+            <dados-acao :acao="dados"></dados-acao>
+          </div>
+        `,
+        methods: {
+          puxarAcao() {
+            fetch(
+              `https://cloud.iexapis.com/stable/stock/${this.simbolo}/quote?token=pk_13b6e29afd0b4b2e9061810ad1c9ff1d`
+            )
+              .then((res) => res.json())
+              .then((json) => {
+                this.dados = json;
+              });
+          },
+        },
+      };
+
+      const vm = new Vue({
+        el: "#app",
+        data: {},
+        components: {
+          FormularioAcoes,
+        },
+      });
+    </script>
+
+    <!-- 
+  Crie um componente com um campo de input e um botão para enviar o valor.
+  Nesse campo de input será possível escrever o simbolo de empresas americanas
+
+  simbolos ex:
+  aapl -> Apple
+  goog -> Google
+  msft -> Microsoft
+  amzn -> Amazon
+  fb -> Facebook
+
+  Ao clicar no botão, faça um fetch com a API:
+  https://api.iextrading.com/1.0/stock/${SIMBOLO}/quote
+  https://cloud.iexapis.com/stable/stock/aapl/quote?token=pk_13b6e29afd0b4b2e9061810ad1c9ff1d
+
+  O resultado do fetch deverá ser mostrado em um componente filho do formulário.
+  Envia as informações utilizando prop
+ 
+  Mostre todas as informações do fetch utilizando um loop.
+ -->
+  </body>
+</html>
